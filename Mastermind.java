@@ -13,7 +13,7 @@ public class Mastermind {
             System.out.println("Vul jouw code in. Je kunt kiezen uit a,b,c,d,e,f. Wil je stoppen? type dan 'q': ");
             String spelersInput = scanner.nextLine().toLowerCase().
                     replaceAll("[ghijklmnoprstuwvxyz]","").replaceAll("\\d+","");
-            //replaceAll etc. negeert alle nummers/letters na de H (behalve Q) in de string en vervangt dit met "".
+            //replaceAll etc. negeert alle nummers/letters na de G (behalve Q) in de string en vervangt dit met "".
 
             if(spelersInput.equals("q")){
                 System.out.println("De verborgen code was " + computer.getVerborgenCode());
