@@ -10,7 +10,7 @@ public class Mastermind {
         printWelkom();
         computer.genereerComputerCode();
         while (true) {
-            System.out.println("Vul jouw code in. Je kunt kiezen uit a,b,c,d,e,f. Wil je stoppen? type dan 'q': ");
+            System.out.println("Vul jouw code in. Je kunt kiezen uit a,b,c,d,e,f.(houd er rekening mee dat 1 letter vaker kan voorkomen). Wil je stoppen? type dan 'q': ");
             String spelersInput = scanner.nextLine().toLowerCase().
                     replaceAll("[ghijklmnoprstuwvxyz]","").replaceAll("\\d+","");
             //replaceAll etc. negeert alle nummers/letters na de G (behalve Q) in de string en vervangt dit met "".
