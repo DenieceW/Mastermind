@@ -26,7 +26,8 @@ public class Computer {
         for (int i = 0; i < computerCode.length(); i++) {
             if (computerCode.charAt(i) == spelersCode.charAt(i)) { //checken voor dezelfde index plek en letter.
                 aantalCorrecteLettersOpJuistePlek++;
-            }else if (spelersCode.contains(String.valueOf(computerCode.charAt(i)))) { //checken of de letter uberhaupt in het woord voorkomt
+            }else if (spelersCode.contains(String.valueOf(computerCode.charAt(i))) && 
+                    spelersCode.charAt(i) != computerCode.charAt(i)) { //checken of de letter uberhaupt in het woord voorkomt.
                 aantalCorrecteLettersOpOnjuistePlek++;
             }
         }
