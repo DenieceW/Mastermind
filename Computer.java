@@ -23,12 +23,9 @@ public class Computer {
     }
 
     void checkAntwoordSpeler(String spelersCode) {
-
-
         for (int i = 0; i < computerCode.length(); i++) {
             if (spelersCode.charAt(i) == computerCode.charAt(i)) { //checken voor dezelfde  plek en letter.
                 aantalCorrecteLettersOpJuistePlek++;
-
             } else if (spelersCode.charAt(i) != computerCode.charAt(i) && //check voor juiste letters die op verkeerde plek staan
                     spelersCode.contains(String.valueOf(computerCode.charAt(i)))){
                 aantalCorrecteLettersOpOnjuistePlek++;
@@ -42,7 +39,6 @@ public class Computer {
         //resetten naar 0 zodat de vorige waardes niet worden meegenomen
         aantalCorrecteLettersOpJuistePlek = 0;
         aantalCorrecteLettersOpOnjuistePlek = 0;
-
         aantalKeerGeraden++; //elke keer wanneer de methode wordt aangeroepen in class mastermind, neemt het aantal geraden pogingen met 1 toe.
     }
 
@@ -63,7 +59,6 @@ public class Computer {
         }
         if (onjuisteplek < enkeleLetter){ //zodat de min getallen door de dubbele letter methode niet worden meegenomen.
             System.out.println("Je hebt 0 correcte letters op de onjuiste plek staan");
-
         } else if (onjuisteplek > enkeleLetter) {
             System.out.println("Je hebt " + onjuisteplek + " correcte letters op een onjuiste plek staan");
         }
