@@ -23,14 +23,20 @@ public class Computer {
     }
 
     void checkAntwoordSpeler(String spelersCode) {
+
+
         for (int i = 0; i < computerCode.length(); i++) {
-            if (computerCode.charAt(i) == spelersCode.charAt(i)) { //checken voor dezelfde index plek en letter.
+            if (spelersCode.charAt(i) == computerCode.charAt(i)) { //checken voor dezelfde  plek en letter.
                 aantalCorrecteLettersOpJuistePlek++;
-            }else if (spelersCode.contains(String.valueOf(computerCode.charAt(i))) && 
-                    spelersCode.charAt(i) != computerCode.charAt(i)) { //checken of de letter uberhaupt in het woord voorkomt.
+
+            } else if (spelersCode.charAt(i) != computerCode.charAt(i) && //check voor juiste letters die op verkeerde plek staan
+                    spelersCode.contains(String.valueOf(computerCode.charAt(i)))){
                 aantalCorrecteLettersOpOnjuistePlek++;
+            } else if (computerCode.contains(String.valueOf(spelersCode.charAt(i)))) { //check voor dubbele letters
+                aantalCorrecteLettersOpOnjuistePlek--;
             }
         }
+
         computerReactie(aantalCorrecteLettersOpJuistePlek,aantalCorrecteLettersOpOnjuistePlek);
 
         //resetten naar 0 zodat de vorige waardes niet worden meegenomen
@@ -54,8 +60,13 @@ public class Computer {
 
         if (onjuisteplek == enkeleLetter) {
             System.out.println("Je hebt " + onjuisteplek + " correcte letter op de onjuiste plek staan");
-        }else
-            System.out.println("Je hebt "+ onjuisteplek +" correcte letters op een onjuiste plek staan");
+        }
+        if (onjuisteplek < enkeleLetter){ //zodat de min getallen door de dubbele letter methode niet worden meegenomen.
+            System.out.println("Je hebt 0 correcte letters op de onjuiste plek staan");
+
+        } else if (onjuisteplek > enkeleLetter) {
+            System.out.println("Je hebt " + onjuisteplek + " correcte letters op een onjuiste plek staan");
+        }
     }
 }
 
