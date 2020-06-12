@@ -6,7 +6,6 @@ public class Computer {
     String computerCode = "";
     int aantalCorrecteLettersOpJuistePlek = 0;
     int aantalCorrecteLettersOpOnjuistePlek = 0;
-    int aantalDubbeleCorrecteLettersOpOnjuistePlek = 0;
     int maxAantalLetters = 4;
     int aantalKeerGeraden = 1;
 
@@ -54,10 +53,8 @@ public class Computer {
             }
 
         computerReactie(aantalCorrecteLettersOpJuistePlek,aantalCorrecteLettersOpOnjuistePlek);
-        //resetten naar 0 zodat de vorige waardes niet worden meegenomen
-        aantalCorrecteLettersOpJuistePlek = 0;
+        aantalCorrecteLettersOpJuistePlek = 0; //resetten naar 0 zodat de vorige waardes niet worden meegenomen
         aantalCorrecteLettersOpOnjuistePlek = 0;
-        aantalDubbeleCorrecteLettersOpOnjuistePlek = 0;
         aantalKeerGeraden++; //elke keer wanneer de methode wordt aangeroepen in class mastermind, neemt het aantal geraden pogingen met 1 toe.
     }
 
