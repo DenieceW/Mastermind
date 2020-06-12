@@ -14,7 +14,7 @@ public class Computer {
         char[] letters = new char[]{'a', 'b', 'c', 'd', 'e', 'f'};
         for (int i = 0; i < maxAantalLetters; i++) {
             int kiesLetter = rd.nextInt(letters.length);
-            computerCode = computerCode.concat(String.valueOf(letters[kiesLetter]));
+            computerCode = computerCode.concat(String.valueOf(letters[kiesLetter])); //voegt per iteratie een nieuwe letter toe
         }
     }
 
@@ -32,7 +32,7 @@ public class Computer {
                 if (spelersCode.contains(String.valueOf(computerCode.charAt(i))) &&
                         spelersCode.charAt(i) != computerCode.charAt(i)) {
                     aantalCorrecteLettersOpOnjuistePlek++;
-                }else if (spelersCode.substring(i).equals(computerCode.substring(i))) { //als speler toevallig de dezelfde dubbele volgorde invoert als pccode met dubbele letters.
+                }else if (spelersCode.substring(i).equals(computerCode.substring(i))) { //als speler toevallig de dezelfde dubbele volgorde invoert als pccode met dubbele letters wordt hier eentje afgetrokken van aantal correcte letters op onjuist plek.
                     aantalCorrecteLettersOpOnjuistePlek--;
                  }
             }
@@ -64,7 +64,7 @@ public class Computer {
         for (var i = 0; i < pcCode.length; i++) {
             for (var j = 0; j < pcCode.length; j++) {
                 if (i != j) {
-                    if (pcCode[i] == pcCode[j]) {
+                    if (pcCode[i] == pcCode[j]) { //geeft aan welke letters dubbel zijn. 
                         return true;
                     }
                 }
