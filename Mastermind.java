@@ -1,4 +1,5 @@
 package com.mastermind;
+//bug met dubbele letters,deze worden twee x meegeteld als correcte letter.
 
 import java.util.Scanner;
 
