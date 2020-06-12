@@ -29,8 +29,6 @@ public class Computer {
             } else if (spelersCode.charAt(i) != computerCode.charAt(i) && //check voor juiste letters die op verkeerde plek staan
                     spelersCode.contains(String.valueOf(computerCode.charAt(i)))){
                 aantalCorrecteLettersOpOnjuistePlek++;
-            } else if (computerCode.contains(String.valueOf(spelersCode.charAt(i)))) { //check voor dubbele letters
-                aantalCorrecteLettersOpOnjuistePlek--;
             }
         }
 
