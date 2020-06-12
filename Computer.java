@@ -24,8 +24,7 @@ public class Computer {
 
     void checkAntwoordSpeler(String spelersCode) {
         //werkt soms voor dubbele letters, soms ook niet, but hey its something.
-        if(checkVoorDubbeleLetters()) {
-            System.out.println("pc code heeft dubbele letters");
+        if(checkVoorDubbeleLetters()) {  
             for (int i = 0; i < computerCode.length(); i++) {
                 if ((computerCode.charAt(i) == spelersCode.charAt(i))) { //checken voor dezelfde  plek en letter.
                     aantalCorrecteLettersOpJuistePlek++;
@@ -33,10 +32,8 @@ public class Computer {
                 if (spelersCode.contains(String.valueOf(computerCode.charAt(i))) &&
                         spelersCode.charAt(i) != computerCode.charAt(i)) {
                     aantalCorrecteLettersOpOnjuistePlek++;
-                    System.out.println("check 1");
                 }else if (spelersCode.substring(i).equals(computerCode.substring(i))) { //als speler toevallig de dezelfde dubbele volgorde invoert als pccode met dubbele letters.
                     aantalCorrecteLettersOpOnjuistePlek--;
-                    System.out.println("check 2");
                  }
             }
         }
@@ -45,7 +42,6 @@ public class Computer {
             for (int i = 0; i < computerCode.length(); i++) {
                 if ((computerCode.charAt(i) == spelersCode.charAt(i))) { //checken voor dezelfde  plek en letter.
                     aantalCorrecteLettersOpJuistePlek++;
-                    System.out.println("pc code heeft geen dubbele letters");
                 } else if (spelersCode.contains(String.valueOf(computerCode.charAt(i))) && //als de code deze juist letter bevat, maar niet op de correcte plek.
                         spelersCode.charAt(i) != computerCode.charAt(i)) {
                     aantalCorrecteLettersOpOnjuistePlek++;
