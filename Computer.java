@@ -62,8 +62,8 @@ public class Computer {
     private boolean checkVoorDubbeleLetters(){
         char[] pcCode = computerCode.toCharArray();
         //hier checken of de computer dubbele letters heeft.
-        for (var i = 0; i < pcCode.length; i++) {
-            for (var j = 0; j < pcCode.length; j++) {
+        for (int i = 0; i < pcCode.length; i++) {
+            for (int j = 0; j < pcCode.length; j++) {
                 if (i != j) {
                     if (pcCode[i] == pcCode[j]) {
                         dubbeleLetter = String.valueOf(pcCode[i]);
@@ -82,8 +82,8 @@ public class Computer {
     private boolean checkVoorDubbeleLettersSpeler(String spelerscode){
         char[] code = spelerscode.toCharArray();
         //hier checken of de speler dubbele letters heeft.
-        for (var i = 0; i < code.length; i++) {
-            for (var j = 0; j < code.length; j++) {
+        for (int i = 0; i < code.length; i++) {
+            for (int j = 0; j < code.length; j++) {
                 if (i != j) {
                     if (code[i] == code[j]) {
                         dubbeleLetterSpeler = String.valueOf(code[i]);
