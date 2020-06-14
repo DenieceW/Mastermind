@@ -6,15 +6,18 @@ public class Computer {
     String computerCode = "";
     int aantalCorrecteLettersOpJuistePlek = 0;
     int aantalCorrecteLettersOpOnjuistePlek = 0;
+    int aantalDubbeleCorrecteLettersOpOnjuistePlek = 0;
     int maxAantalLetters = 4;
     int aantalKeerGeraden = 1;
+    String dubbeleLetter = "";
+    String dubbeleLetterSpeler = "";
 
     void genereerComputerCode() {
         Random rd = new Random();
         char[] letters = new char[]{'a', 'b', 'c', 'd', 'e', 'f'};
         for (int i = 0; i < maxAantalLetters; i++) {
             int kiesLetter = rd.nextInt(letters.length);
-            computerCode = computerCode.concat(String.valueOf(letters[kiesLetter])); //voegt per iteratie een nieuwe letter toe
+            computerCode = computerCode.concat(String.valueOf(letters[kiesLetter]));
         }
     }
 
@@ -23,34 +26,32 @@ public class Computer {
     }
 
     void checkAntwoordSpeler(String spelersCode) {
-        //werkt soms voor dubbele letters, soms ook niet, but hey its something.
-        if(checkVoorDubbeleLetters()) {  
-            for (int i = 0; i < computerCode.length(); i++) {
-                if ((computerCode.charAt(i) == spelersCode.charAt(i))) { //checken voor dezelfde  plek en letter.
-                    aantalCorrecteLettersOpJuistePlek++;
-                }
-                if (spelersCode.contains(String.valueOf(computerCode.charAt(i))) &&
-                        spelersCode.charAt(i) != computerCode.charAt(i)) {
-                    aantalCorrecteLettersOpOnjuistePlek++;
-                }else if (spelersCode.substring(i).equals(computerCode.substring(i))) { //als speler toevallig de dezelfde dubbele volgorde invoert als pccode met dubbele letters wordt hier eentje afgetrokken van aantal correcte letters op onjuist plek.
-                    aantalCorrecteLettersOpOnjuistePlek--;
-                 }
+       checkVoorDubbeleLetters();//hier checken of de speler//computer dubbele letters hebben
+       checkVoorDubbeleLettersSpeler(spelersCode);
+
+        for (int i = 0; i < computerCode.length(); i++) {
+            if ((computerCode.charAt(i) == spelersCode.charAt(i))) { //checken voor dezelfde  plek en letter.
+                aantalCorrecteLettersOpJuistePlek++;
             }
-        }
-        //hieronder werkt voor vier en twee verschillende letters in de code
-        else
-            for (int i = 0; i < computerCode.length(); i++) {
-                if ((computerCode.charAt(i) == spelersCode.charAt(i))) { //checken voor dezelfde  plek en letter.
-                    aantalCorrecteLettersOpJuistePlek++;
-                } else if (spelersCode.contains(String.valueOf(computerCode.charAt(i))) && //als de code deze juist letter bevat, maar niet op de correcte plek.
-                        spelersCode.charAt(i) != computerCode.charAt(i)) {
-                    aantalCorrecteLettersOpOnjuistePlek++;
-                }
+            if(spelersCode.charAt(i) != computerCode.charAt(i)
+                     && spelersCode.contains(String.valueOf(computerCode.charAt(i)))) {
+                aantalCorrecteLettersOpOnjuistePlek++;
             }
 
+            //onderstaande zorgt ervoor dat de dubbele letter niet meer meegeteld wordt.
+            if(getDubbeleLetter().contains(String.valueOf(spelersCode.charAt(i)))){
+                    aantalCorrecteLettersOpOnjuistePlek--;
+                if(getDubbeleLetter().equals(getDubbeleLetterSpeler())){ //
+                    aantalCorrecteLettersOpOnjuistePlek++;
+                }
+            }
+        }
+
         computerReactie(aantalCorrecteLettersOpJuistePlek,aantalCorrecteLettersOpOnjuistePlek);
-        aantalCorrecteLettersOpJuistePlek = 0; //resetten naar 0 zodat de vorige waardes niet worden meegenomen
+        //resetten naar 0 zodat de vorige waardes niet worden meegenomen
+        aantalCorrecteLettersOpJuistePlek = 0;
         aantalCorrecteLettersOpOnjuistePlek = 0;
+        aantalDubbeleCorrecteLettersOpOnjuistePlek = 0;
         aantalKeerGeraden++; //elke keer wanneer de methode wordt aangeroepen in class mastermind, neemt het aantal geraden pogingen met 1 toe.
     }
 
@@ -64,13 +65,38 @@ public class Computer {
         for (var i = 0; i < pcCode.length; i++) {
             for (var j = 0; j < pcCode.length; j++) {
                 if (i != j) {
-                    if (pcCode[i] == pcCode[j]) { //geeft aan welke letters dubbel zijn. 
+                    if (pcCode[i] == pcCode[j]) {
+                        dubbeleLetter = String.valueOf(pcCode[i]);
                         return true;
                     }
                 }
             }
         }
         return false;
+    }
+
+    private String getDubbeleLetter(){
+        return dubbeleLetter;
+    }
+
+    private boolean checkVoorDubbeleLettersSpeler(String spelerscode){
+        char[] code = spelerscode.toCharArray();
+        //hier checken of de speler dubbele letters heeft.
+        for (var i = 0; i < code.length; i++) {
+            for (var j = 0; j < code.length; j++) {
+                if (i != j) {
+                    if (code[i] == code[j]) {
+                        dubbeleLetterSpeler = String.valueOf(code[i]);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private String getDubbeleLetterSpeler(){
+        return dubbeleLetterSpeler;
     }
 
     void computerReactie(int juisteplek, int onjuisteplek){
