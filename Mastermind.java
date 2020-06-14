@@ -10,7 +10,6 @@ public class Mastermind {
     void start(){
         printWelkom();
         computer.genereerComputerCode();
-        System.out.println(computer.getVerborgenCode());
         while (true) {
             meldingInvoerCode();
             String spelersInput = scanner.nextLine().toLowerCase().replaceAll("[ghijklmnoprstuwvxyz]","").
